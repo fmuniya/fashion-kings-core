@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD TilesmConfiguration 3.0//EN"
+		"Http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+		
+<tiles-definitions>
+	<!--<definition name="simple.index" template="/WEB-INF/layout/simple.jsp">
+		<put-attribute name="header" value="WEB-INF/tiles/header.jsp" />
+		<put-attribute name="footer" value="WEB-INF/tiles/header.jsp" />
+	</definition>-->
+	
+	<definition name="standard.index" template="/WEB-INF/layout/standard.jsp">
+		
+	</definition>
+	
+	<definition name="simple.index" template="/WEB-INF/layout/simple.jsp">
+		
+	</definition>
+		
+	<definition name="welcome" extends="simple.index">
+		<put-attribute name="body" value="/WEB-INF/pages/welcome.jsp" />
+	</definition>
+	
+	<definition name="category-form" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/category/category-form.jsp" />
+	</definition>
+	
+	<definition name="category-list" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/category/category-list.jsp" />
+	</definition>
+	
+	<definition name="category-details" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/category/category-details.jsp" />
+	</definition>
+	
+	<definition name="product-lists" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/products/product-lists.jsp" />
+	</definition>
+	
+	<definition name="users" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/users/users.jsp" />
+	</definition>
+	
+	<!--<definition name="welcome" extends="simple.index">
+		<put-attribute name="body" value="WEB-INF/pages/welcome.jsp" />
+	</definition>-->
+	
+	
+	
+</tiles-definitions>

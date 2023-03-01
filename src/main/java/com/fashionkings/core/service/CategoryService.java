@@ -1,5 +1,7 @@
 package com.fashionkings.core.service;
 
+import com.fashionkings.core.jpa.Category;
+
 public interface CategoryService {
-	String[] allCategories();
+	Category[] allCategories();
 }	

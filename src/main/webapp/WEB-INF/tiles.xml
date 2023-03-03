@@ -21,6 +21,8 @@
 		<put-attribute name="body" value="/WEB-INF/pages/welcome.jsp" />
 	</definition>
 	
+<!--	CATEGORY DEFINITIONS    -->
+	
 	<definition name="category-form" extends="standard.index">
 		<put-attribute name="body" value="/WEB-INF/pages/category/category-form.jsp" />
 	</definition>
@@ -33,9 +35,22 @@
 		<put-attribute name="body" value="/WEB-INF/pages/category/category-details.jsp" />
 	</definition>
 	
+<!--	PRODUCTS DEFINITIONS   -->
+	
 	<definition name="product-lists" extends="standard.index">
 		<put-attribute name="body" value="/WEB-INF/pages/products/product-lists.jsp" />
 	</definition>
+	
+	<definition name="product-form" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/products/product-form.jsp" />
+	</definition>
+	
+	<definition name="product-details" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/products/product-details.jsp" />
+	</definition>
+	
+	
+<!--	USERS DEFINITIONS    -->
 	
 	<definition name="users" extends="standard.index">
 		<put-attribute name="body" value="/WEB-INF/pages/users/users.jsp" />

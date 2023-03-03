@@ -4,7 +4,7 @@ package com.fashionkings.core.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,7 +42,9 @@ public class CategoryController {
 	
 	@RequestMapping(value = "form", method = RequestMethod.POST)
 	public String addCategory(@ModelAttribute Category category) {
+		System.out.println("category output");
 		System.err.println(category);
+		
 		
 		return"category-form";
 	}

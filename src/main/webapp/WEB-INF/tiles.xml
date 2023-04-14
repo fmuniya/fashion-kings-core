@@ -10,7 +10,7 @@
 	</definition>-->
 	
 	<definition name="standard.index" template="/WEB-INF/layout/standard.jsp">
-		
+		<put-attribute name="menu" value="/WEB-INF/fragments/menu.jsp"/>
 	</definition>
 	
 	<definition name="simple.index" template="/WEB-INF/layout/simple.jsp">

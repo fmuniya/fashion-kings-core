@@ -1,6 +1,7 @@
 package com.fashionkings.core.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fashionkings.core.jpa.Category;
+import com.fashionkings.core.repository.CategoryRepository;
 import com.fashionkings.core.service.CategoryService;
+import com.fashionkings.core.util.MenuMap;
 
 
 @Controller
@@ -17,6 +20,9 @@ import com.fashionkings.core.service.CategoryService;
 public class CategoryController {
 	
 	private CategoryService categoryService;
+	
+	@Autowired 
+	private CategoryRepository CategoryRepository;
 	
 	public CategoryController (CategoryService categoryService) {
 		this.categoryService = categoryService;
@@ -34,19 +40,16 @@ public class CategoryController {
 	
 	
 	@RequestMapping(value = "form", method = RequestMethod.GET)
-	public String form() {
-		System.err.println("===============GET WAS PEFORMED=================");
-		
-		return"category-form";
+	public String form(Model model) {
+		model.addAttribute("menu", buildMenu());
+		return "category-form";
 	}
 	
 	@RequestMapping(value = "form", method = RequestMethod.POST)
 	public String addCategory(@ModelAttribute Category category) {
-		System.out.println("category output");
 		System.err.println(category);
-		
-		
-		return"category-form";
+		CategoryRepository.save(category);
+		return "category-form";
 	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -54,7 +57,18 @@ public class CategoryController {
 		
 		Category[] categoryList = categoryService.allCategories();
 		model.addAttribute("categories", categoryList);
+		model.addAttribute("menu", buildMenu());
 				return "category-list";
+	}
+	
+	private MenuMap buildMenu()
+	{
+		MenuMap menuMap = new MenuMap();
+		menuMap.setTitle("Categories")
+			.addPair("List Categories", "/category/list")
+			.addPair("New Category", "/category/form");
+				
+		return menuMap;
 	}
 
 }

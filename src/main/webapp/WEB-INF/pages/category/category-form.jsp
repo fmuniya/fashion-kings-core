@@ -7,7 +7,7 @@
 <div class="container">
     <h3>Category Form</h3>
     <form action="/category/form" method="POST">
-        <input type="text"
+        <input type="hidden"
             name="id"
             
             class="form-control"

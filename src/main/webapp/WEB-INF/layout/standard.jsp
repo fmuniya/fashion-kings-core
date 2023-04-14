@@ -24,18 +24,14 @@
                 </div>
                 <div class="row pt-2">
                     <div class="column side vh-100">
-                        left menu
+                        <tiles:insertAttribute name="menu" />
                     </div>
                     <div class="column middle">
                         <tiles:insertAttribute name="body" />
                     </div>
                 </div>
+                
              </div>
-
-        <!-- <div class="footer">
-            <div class="">Designed by F.Muniya</div>
-        </div> -->
-
         <script src="/webjars/bootstrap/5.2.2/js/bootstrap.min.js"></script>
         <script src="/webjars/jquery/3.6.1/js/jquery.min.js"></script>
     </body>

@@ -20,8 +20,7 @@
             name="title"
             required
             class="form-control"
-            id="categoryTitle"
-            value="">
+            id="categoryTitle">
         </div>
 
         <div class="mb-3">

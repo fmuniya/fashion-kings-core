@@ -1,28 +1,76 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 
-<div class="container">
-    <h3>Product Form</h3>
-    <form action="/products/form" method="POST">
-        <input type="text"
+<div class="row">
+    
+    <form action="/products" method="POST">
+        <h3>${title}</h3>
+        <br />
+        <input type="hidden"
             name="id"
-            
-            class="form-control"
-            value="0"
-            id="productId">
-
-        <div class="mb-3">
-            <label for="productTitle" class="form-label">product Title</Title></label>
-            <input type="text"
-            name="title"
             required
             class="form-control"
-            id="productTitle"
-            value="">
-        </div>
+            value="${product.getId()}"
+            id="productId">
+
+            <div class="mb-3">
+                <label class="form-label">Categories</label>
+                <div class="row">
+                    <c:forEach items="${categories}" var="category">
+                        <div class="col-2">
+                            <input type="checkbox"
+                                name="Categories"
+                                value="${category.id}"
+                                id="categories${category.getId() }">
+                            <label for="categories${ category.id }">${category.getTitle() }</label>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="productTitle" class="form-label">Product Title</label>
+                <input type="text"
+                    name="title"
+                    required
+                    class="form-control"
+                    id="productTitle"
+                    value="${product.getTitle() }">
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price (&euro;)</label>
+                <input type="number" min="0.00" max="100000.00" step="0.01"
+                    name="price"
+                    required
+                    class="form-control"
+                    id="price"
+                    value="${product.getPrice() }">
+            </div>
+
+            <div class="mb-3">
+                <label for="stockQuantity" class="form-label">Stock Quantity</label>
+                <input type="number" min="0"
+                    name="stockQuantity"
+                    required
+                    class="form-control"
+                    id="stockQuantity"
+                    value="${product.getStockQuantity() }">
+            </div>
+
+            <div class="mb-3">
+                <label for="discountPercent" class="form-label">Discount %</label>
+                <input type="number" max="100" min="0"
+                    name="discountPercent"
+                    required
+                    class="form-control"
+                    id="discountPercent"
+                    value="${product.getDiscountPercent() }">
+            </div>
 
         <div class="mb-3">
             <label for="productDescription" class="form-label">Description</label> 

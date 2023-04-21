@@ -1,10 +1,14 @@
 package com.fashionkings.core.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +22,13 @@ public class Category {
 	
 	@Column(name = "title")
 	private String title;
+
+	@Column(name = "description")
+	private String description;
 	
+	
+	@ManyToMany(mappedBy = "categories")
+	private List<Product> products = new ArrayList<>();
 	
 	public long getId() {
 		return id;
@@ -52,10 +62,7 @@ public class Category {
 		return this;
 	}
 
-	@Column(name = "description")
-	private String description;
-
-
+	
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", title=" + title + ", description=" + description + "]";

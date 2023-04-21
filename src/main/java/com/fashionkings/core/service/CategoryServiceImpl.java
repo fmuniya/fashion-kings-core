@@ -1,33 +1,28 @@
 package com.fashionkings.core.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.fashionkings.core.jpa.Category;
+import com.fashionkings.core.repository.CategoryRepository;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
 	
+	private CategoryRepository categoryRepository;
+	
+	public CategoryServiceImpl(CategoryRepository categoryRepository) {
+		super();
+		this.categoryRepository = categoryRepository;
+	}
+
 	@Override
-	public Category[] allCategories() {
-		Category cat1 = new Category()
-		.setId(1)
-		.setTitle("Men")
-		.setDescription("Mens wear category");
+	public List<Category> allCategories() {
 		
-		Category cat2 = new Category()
-			.setId(1)
-			.setTitle("Women")
-			.setDescription("Womens wear category");
-		
-		Category cat3 = new Category()
-				.setId(1)
-				.setTitle("kids")
-				.setDescription("Kids wear category");
-		
-		Category[] categories = {cat1, cat2, cat3};
-		
-		return categories;
-		
+		return categoryRepository.findAll();
+					
 	}
 
 }

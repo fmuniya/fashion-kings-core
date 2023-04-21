@@ -1,5 +1,7 @@
-package com.fashionkings.core.controller;
+ package com.fashionkings.core.controller;
 
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,7 @@ public class CategoryController {
 	@RequestMapping(value ="details")
 	public String getDetails() {
 		return "category-details";
+		
 	}
 	
 	
@@ -46,16 +49,17 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "form", method = RequestMethod.POST)
-	public String addCategory(@ModelAttribute Category category) {
+	public String addCategory(Model model, @ModelAttribute Category category) {
 		System.err.println(category);
 		CategoryRepository.save(category);
+		model.addAttribute("menu", buildMenu());
 		return "category-form";
 	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(Model model) {
 		
-		Category[] categoryList = categoryService.allCategories();
+		List<Category> categoryList = categoryService.allCategories();
 		model.addAttribute("categories", categoryList);
 		model.addAttribute("menu", buildMenu());
 				return "category-list";
@@ -67,7 +71,6 @@ public class CategoryController {
 		menuMap.setTitle("Categories")
 			.addPair("List Categories", "/category/list")
 			.addPair("New Category", "/category/form");
-				
 		return menuMap;
 	}
 

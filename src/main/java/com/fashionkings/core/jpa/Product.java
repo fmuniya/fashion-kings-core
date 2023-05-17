@@ -184,6 +184,21 @@ public class Product {
 		return this;
 	}
 	
+	public void addCategory(Category category) {
+		categories.add(category);
+		category.getProducts().add(this);
+    }
+ 
+    public void removeCategory(Category category) {
+    	categories.remove(category);
+        category.getProducts().remove(this);
+	}
+	
+    
+    @PrePersist
+    public void prePersist() {
+    	this.created = new Date(System.currentTimeMillis());
+    }
 	
 	
 }

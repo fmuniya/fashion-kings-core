@@ -45,8 +45,8 @@
 		<put-attribute name="body" value="/WEB-INF/pages/products/product-form.jsp" />
 	</definition>
 	
-	<definition name="product-details" extends="standard.index">
-		<put-attribute name="body" value="/WEB-INF/pages/products/product-details.jsp" />
+	<definition name="product" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/products/product.jsp" />
 	</definition>
 	
 	

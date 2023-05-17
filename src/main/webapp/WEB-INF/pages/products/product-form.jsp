@@ -7,7 +7,7 @@
 
 <div class="row">
     
-    <form action="/products" method="POST">
+    <form action="/products/form" method="POST">
         <h3>${title}</h3>
         <br />
         <input type="hidden"
@@ -23,7 +23,7 @@
                     <c:forEach items="${categories}" var="category">
                         <div class="col-2">
                             <input type="checkbox"
-                                name="Categories"
+                                name="categoryIds"
                                 value="${category.id}"
                                 id="categories${category.getId() }">
                             <label for="categories${ category.id }">${category.getTitle() }</label>

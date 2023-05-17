@@ -23,18 +23,15 @@ public class CategoryController {
 	
 	private CategoryService categoryService;
 	
-	@Autowired 
-	private CategoryRepository CategoryRepository;
+	
+	private CategoryRepository categoryRepository;
 	
 	public CategoryController (CategoryService categoryService) {
 		this.categoryService = categoryService;
+		this.categoryRepository = categoryRepository;
 	}
 	
-	/*
-	 * @Autowired public void setCategoryService(CategoryService categoryService) {
-	 * this.categoryService = categoryService; }
-	 */
-
+	
 	@RequestMapping(value ="details")
 	public String getDetails() {
 		return "category-details";
@@ -51,7 +48,7 @@ public class CategoryController {
 	@RequestMapping(value = "form", method = RequestMethod.POST)
 	public String addCategory(Model model, @ModelAttribute Category category) {
 		System.err.println(category);
-		CategoryRepository.save(category);
+		categoryRepository.save(category);
 		model.addAttribute("menu", buildMenu());
 		return "category-form";
 	}

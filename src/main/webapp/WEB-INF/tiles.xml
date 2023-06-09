@@ -35,6 +35,10 @@
 		<put-attribute name="body" value="/WEB-INF/pages/category/category-details.jsp" />
 	</definition>
 	
+	<definition name="category-delete" extends="standard.index">
+		<put-attribute name="body" value="/WEB-INF/pages/category/category-delete.jsp" />
+	</definition>
+	
 <!--	PRODUCTS DEFINITIONS   -->
 	
 	<definition name="product-lists" extends="standard.index">

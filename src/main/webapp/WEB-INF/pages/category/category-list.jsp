@@ -18,7 +18,12 @@
                 <td>${category.getTitle()}</td>
                 <td>${category.getDescription()}</td>
                 <td>active</td>
-                <td>actions</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" href="<c:out value ="/category/form/${category.id}"/>">Edit</a>
+                    <a class="btn btn-sm btn-warning" href="<c:out value ="/category/${category.id}/"/>">View</a>
+                    <a class="btn btn-sm btn-dark" href="<c:out value ="/category/forms/${category.id}/products"/>">View Product</a>
+                    <a class="btn btn-sm btn-danger" href="/category/${category.getId()}/delete">Delete</a>
+                </td>
             </tr>
         </c:forEach>
     </tbody>

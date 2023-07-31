@@ -17,7 +17,7 @@
                 <div class="navigation">
                     <a href="/login">Home</a>
                     <a href="/category/list">Categories</a>
-                    <a href="/products/list">Products</a>
+                    <a href="/product/list">Products</a>
                     <a href="/login">Orders</a>
                     <a href="/login">Users</a>
                     

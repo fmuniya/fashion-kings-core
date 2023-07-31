@@ -1,6 +1,7 @@
 package com.fashionkings.core.jpa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,10 +10,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "categories")
+@SQLDelete(sql = "UPDATE categories SET deleted = true WHERE category_id = ?")
+@Where(clause = "deleted=false")
 public class Category {
 	
 	@Id
@@ -25,6 +33,15 @@ public class Category {
 
 	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "created")
+	private Date created;
+	
+	@Column(name = "updated")
+	private Date updated;
+	
+	@Column(name = "deleted")
+	private Boolean deleted = Boolean.FALSE;
 	
 	
 	@ManyToMany(mappedBy = "categories")
@@ -80,7 +97,16 @@ public class Category {
 		return "Category [id=" + id + ", title=" + title + ", description=" + description + "]";
 	}
 	
+	@PrePersist
+	public void prePersist() {
+		this.created =new Date(System.currentTimeMillis());
+		this.deleted = false;
+	}
 	
+	@PreUpdate
+	public void preUpdate() {
+		this.updated = new Date(System.currentTimeMillis());
+	}
 	
 		
 

@@ -55,6 +55,7 @@ public class CategoryController {
 	@RequestMapping(value = "form/{id}", method = RequestMethod.GET)
 	public String editForm (Model model, @PathVariable long id) {
 		Category category = categoryService.getById(id);
+		System.out.println(category);
 		model.addAttribute("category", category);
 		model.addAttribute("title", String.format("Edit category: %s", category.getTitle()));
 		model.addAttribute("menu", buildMenu());

@@ -3,12 +3,11 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
 <div class="row">
     
-    <form action="/products/form" method="POST">
+    <form action="/product/form" method="POST">
         <h3>${title}</h3>
+
         <br />
         <input type="hidden"
             name="id"
@@ -77,7 +76,7 @@
             <textarea 
                 name="description" 
                 class="form-control"
-                id="productDescription">
+                id="productDescription">${product.getDescription() }
             </textarea>           
         </div>
         <input type="submit" value="Save" class="btn btn-secondary"/>

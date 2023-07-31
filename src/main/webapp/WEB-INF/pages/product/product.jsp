@@ -4,14 +4,15 @@
 
 <div class="container">
     <div class="mb-4">
-        <!-- <a class="btn btn-sm btn-wwarning" href="<c:out value="/product/form/${product.id}"/>"Edit</a> -->
+        <a class="btn btn-sm btn-wwarning" href="<c:out value="/product/form/${product.id}"/>"Edit</a>
         <a class="btn btn-sm btn-secondary" href="product/form">Deactivate</a>
         <a class="btn btn-sm btn-secondary disabled" href="product/form">Activate</a>
+        <a class="btn btn-sm btn-sm btn-secondary" href="/product/form">Delete</a>
         <a class="btn btn-sm btn-primary" href="product/form">Add a Product</a>
     </div>
 
     <div class="row pb-4">
-        <div class="col-3"><span class="fw-bold">Product title</span></div>
+        <div class="col-3"><span class="fw-bold">Product Title</span></div>
         <div class="col-9">${product.getPrice()}</div>
     </div>
 

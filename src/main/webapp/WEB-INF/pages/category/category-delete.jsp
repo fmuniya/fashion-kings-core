@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container">
+    
     <div class="row pb-4">
         <div class="col-3"><span class="fw-bold">Please Confirm Delete</span></div>
         <div class="col-9">The Category "${category.getTitle() }" will be permanently deleted</div>

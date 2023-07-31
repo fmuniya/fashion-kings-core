@@ -19,7 +19,7 @@ import javax.persistence.*;
 //import javax.persistence.Table;
 
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 public class Product {
 	
 	@Id
@@ -39,6 +39,9 @@ public class Product {
 	@Column(name = "description")
 	private String description;
 	
+	@Column(name = "image")
+	private String image;
+	
 	@Column(name = "quantity")
 	private int stockQuantity;
 	
@@ -46,7 +49,7 @@ public class Product {
 	private int discountPercent;
 	
 	@Column(name = "price", nullable = true)
-	private String price;
+	private double price;
 	
 	@Column(name = "created", nullable = false)
 	private Date created;
@@ -130,12 +133,12 @@ public class Product {
 		return this;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public Product setPrice(String price) {
-		this.price = price;
+	public Product setPrice(double d) {
+		this.price = d;
 		return this;
 	}
 
@@ -178,7 +181,8 @@ public class Product {
 	public Set<Category> getCategories() {
 		return categories;
 	}
-
+	
+	
 	public Product setCategories(Set<Category> categories) {
 		this.categories = categories;
 		return this;
@@ -199,6 +203,16 @@ public class Product {
     public void prePersist() {
     	this.created = new Date(System.currentTimeMillis());
     }
+    
+    public String getImage(String image) {
+		return image;
+		
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+		
+	}
 	
 	
 }

@@ -1,14 +1,13 @@
 package com.fashionkings.core.dto;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.fashionkings.core.jpa.Category;
 
-public class ProductDTO {
+public class ProductDTO extends Object{
 
 		private long id;
 		private String title;
@@ -19,60 +18,91 @@ public class ProductDTO {
 		private double price;
 		private List<Long> categoryIds;
 		private Set<Category> categories = new HashSet<>();
+		
+		
 		public long getId() {
 			return id;
 		}
-		public void setId(long id) {
+		
+		
+		public ProductDTO setId(long id) {
 			this.id = id;
+			return this;
 		}
+		
 		public String getTitle() {
 			return title;
 		}
-		public void setTitle(String title) {
+		
+		public ProductDTO setTitle(String title) {
 			this.title = title;
+			return this;
 		}
+		
 		public String getDescription() {
 			return description;
 		}
-		public void setDescription(String description) {
+		
+		public ProductDTO setDescription(String description) {
 			this.description = description;
+			return this;
 		}
+		
 		public int getStockQuantity() {
 			return stockQuantity;
 		}
-		public void setStockQuantity(int stockQuantity) {
-			this.stockQuantity = stockQuantity;
+		
+		public int setStockQuantity() {
+			return stockQuantity;
 		}
+		
 		public int getDiscountPercent() {
 			return discountPercent;
 		}
-		public void setDiscountPercent(int discountPercent) {
+		
+		public ProductDTO setDiscountPercent(int discountPercent) {
 			this.discountPercent = discountPercent;
+			return this;
 		}
+		
 		public String getImage() {
 			return image;
 		}
+		
 		public void setImage(String image) {
 			this.image = image;
 		}
+		
 		public double getPrice() {
 			return price;
 		}
-		public void setPrice(double price) {
+		
+		public ProductDTO setPrice(double price) {
 			this.price = price;
+			return this;
 		}
+		
 		public List<Long> getCategoryIds() {
 			return categoryIds;
 		}
+		
 		public void setCategoryIds(List<Long> categoryIds) {
 			this.categoryIds = categoryIds;
 		}
+		
 		public Set<Category> getCategories() {
 			return categories;
 		}
+		
 		public void setCategories(Set<Category> categories) {
 			this.categories = categories;
 		}
+		
+		public String toSTring() {
+			return "products [id=" + id + ", title=" + title + ", description=" + description + ", stockQuantity=" + stockQuantity + ","
+					+ " discountPercent=" + discountPercent + ", price=" + price + ", categories=" + categoryIds + "]";
+		}
+		
 
 
 }

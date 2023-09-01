@@ -54,7 +54,7 @@
 	</definition>
 	
 	<definition name="product-delete" extends="standard.index">
-		<put-attribute name="body" value="/WEB-INF/pages/category/product-delete.jsp" />
+		<put-attribute name="body" value="/WEB-INF/pages/product/product-delete.jsp" />
 	</definition>
 	
 	

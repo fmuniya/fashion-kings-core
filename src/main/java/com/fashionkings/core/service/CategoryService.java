@@ -11,5 +11,6 @@ public interface CategoryService {
 	Category add(Category category);
 	//Category delete(Category category);
 	void delete(long id);
+	void saveCover(long id, String filename);
 	
 }	

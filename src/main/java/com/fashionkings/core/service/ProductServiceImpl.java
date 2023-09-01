@@ -1,8 +1,10 @@
 package com.fashionkings.core.service;
+import java.util.Arrays;
 import java.util.Collection;
-
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -42,14 +44,19 @@ public class ProductServiceImpl implements ProductService {
 	  public ProductDTO get(long id) {
 		  Product product = productRepo.findById(id).get();
 		  ProductDTO dto = new ProductDTO();
-		  BeanUtils.copyProperties(product, dto);
+		  BeanUtils.copyProperties(product, dto);	
+		  List<Long> catIds = product.getCategories()
+					  				 	.stream()
+					  					.map(Category::getId)
+					  					.collect(Collectors.toList());
+		  dto.setCategoryIds(catIds);
 		  return dto;
 			  }
 	  
 	  @Override 
 	  public ProductDTO add(ProductDTO productDTO) {
 		  Product product = new Product();
-		  BeanUtils.copyProperties(productDTO, product);
+		  BeanUtils.copyProperties(productDTO, product, "categories", "id");
 		  for(long id: productDTO.getCategoryIds()) {
 			  Optional<Category> optional = catRepository.findById(id);
 			  if (optional.isPresent()) {
@@ -63,18 +70,32 @@ public class ProductServiceImpl implements ProductService {
 	  }
 	  
 	  @Override
-	  public ProductDTO update(ProductDTO product) {
-		  Optional<Product> optional = productRepo.findById(product.getId());
+	  public ProductDTO update(ProductDTO productDTO) {
+		  Optional<Product> optional = productRepo.findById(productDTO.getId());
 		  if(optional.isEmpty()) {
 			  throw new RuntimeException("NOT FOUND");
 		  }
+		  Product product = optional.get();
+		 
+		  for (Category cat: new HashSet<Category>(product.getCategories())) {
+			  if (productDTO.getCategoryIds().indexOf(cat.getId()) < 0) {
+				  product.removeCategory(cat);
+			  }
+		  }
 		  
-		  Product prod = optional.get().setTitle(product.getTitle())
-				  					.setPrice(product.getPrice())
-				  					.setDescription(product.getDescription())
-				  					.setDiscountPercent(product.getDiscountPercent())
-				  					.setStockQuantity(product.getStockQuantity());
-		  return null ;
+		  for (Long id: productDTO.getCategoryIds()) {
+			  Category match = product.getCategories()
+					  					.stream()
+					  					.filter(p -> p.getId() ==id)
+					  					.findAny().orElse(null);
+			  if (match ==null) {
+				  Optional<Category> opt = catRepository.findById(id);
+				  product.addCategory(opt.get());
+			  }
+		  }
+		  BeanUtils.copyProperties(productDTO, product, "categories", "id");
+		  productRepo.save(product);
+		  return productDTO;
 	  }
 	 
 
@@ -85,34 +106,15 @@ public class ProductServiceImpl implements ProductService {
 		return productRepo.findAll();
 	}
 
-	/*
-	 * @Override public ProductDTO add(ProductDTO productDTO) { // TODO
-	 * Auto-generated method stub Product product = new Product();
-	 * BeanUtils.copyProperties(productDTO, product, "categories", "id"); for(long
-	 * id: productDTO.getCategoryIds()) { Optional<Category> optional =
-	 * catRepository.findById(id); if(optional.isPresent()) {
-	 * product.addCategory(optional.get()); } } product = productRepo.save(product);
-	 * productDTO.setId(product.getId()); return productDTO;
-	 * 
-	 * }
-	 * 
-	 * @Override public ProductDTO get(long id) { Product product =
-	 * productRepo.findById(id).get(); ProductDTO dto = new ProductDTO();
-	 * BeanUtils.copyProperties(product, dto); List<Long> catIds =
-	 * product.getCategories() .stream() .map(Category::getId)
-	 * .collect(Collectors.toList()); dto.setCategoryIds(catIds); return dto; }
-	 * 
-	 * 
-	 * @Override public void saveImage(long id, String filename) { Product product =
-	 * productRepo.findById(id).orElseThrow(); product.setImage(filename);
-	 * productRepo.save(product);
-	 * 
-	 * }
-	 * 
-	 * 
-	 * @Override public Page<Product> browse(int pageNumber) { // TODO
-	 * Auto-generated method stub return null; }
-	 */
+
+	@Override
+	public void delete(long id) {
+		Product product = productRepo.findById(id).orElseThrow();
+		productRepo.delete(product);
+		
+	}
+
+	
 
 
 }

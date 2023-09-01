@@ -10,6 +10,7 @@ import com.fashionkings.core.service.ProductService;
 //import com.fashionkings.core.service.ProductService;
 import com.fashionkings.core.util.MenuMap;
 
+
 @Controller
 @RequestMapping("product")
 public class ProductController {
@@ -85,6 +86,24 @@ public class ProductController {
 		model.addAttribute("product", product);
 		return String.format("redirect:/product/%s", product.getId());
 		//return "redirect:/product/"+product.getId();
+	}
+	
+	//===============Delete 
+	@RequestMapping(value = "{id}/delete", method = RequestMethod.GET)
+	public String confirmDelete(Model model, @PathVariable long id) {
+		System.out.println("Will delete");	
+		ProductDTO product = productService.get(id);
+		model.addAttribute("title", String.format("Delete product %s", product.getTitle()));
+		model.addAttribute("product", product);
+		model.addAttribute("menu", buildMenu());
+		return "product-delete";
+		
+	}
+	
+	@RequestMapping(value = "{id}/delete", method = RequestMethod.POST)
+	public String delete(Model model, @PathVariable long id) {
+		productService.delete(id);
+		return "redirect:/product/list";
 	}
 	
 	private MenuMap buildMenu()

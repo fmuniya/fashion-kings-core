@@ -62,4 +62,12 @@ public class CategoryServiceImpl implements CategoryService{
 		
 	}
 
+	@Override
+	public void saveCover(long id, String filename) {
+		Category cat = categoryRepository.findById(id).orElseThrow();
+		cat.setCover(filename);
+		categoryRepository.save(cat);
+		
+	}
+
 }

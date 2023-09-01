@@ -14,10 +14,11 @@ import com.fashionkings.core.jpa.Product;
 public interface ProductService {
 	
 	Collection<Product> getProducts();
-	ProductDTO get (long id);
+	ProductDTO get(long id);
 	ProductDTO add(ProductDTO product);
 	ProductDTO update(ProductDTO product);
 	List<Product> allProducts();
+	void delete(long id);
 	
 	
 

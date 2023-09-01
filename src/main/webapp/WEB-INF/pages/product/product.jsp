@@ -13,7 +13,7 @@
 
     <div class="row pb-4">
         <div class="col-3"><span class="fw-bold">Product Title</span></div>
-        <div class="col-9">${product.getPrice()}</div>
+        <div class="col-9">${product.getTitle()}</div>
     </div>
 
     <div class="row pb-4">

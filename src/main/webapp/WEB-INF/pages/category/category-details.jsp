@@ -26,18 +26,44 @@
          </div>
 
         <div class="col-5">
-            <div>
-                <img id = "cover" src="/category/images/${category.getCover()}" alt="Category Cover"/>
-            </div>
-            <form action="/category/${category.getId()}/upload" method = "POST" enctype="multipart/form-data">
-                <input name ="file" type="file", id="imgInp" required/>
-
-                <div class="mt-2">
-                    <input type="submit" value="upload" class = "btn-light"/> 
+            <c:if test="${category.getCover() != null}">
+                <div>
+                    <img id = "cover" src="/category/images/${category.getCover()}" alt="Category Cover"/>
                 </div>
+            </c:if>
+            
+            <form action="/category/${category.getId()}/upload" method = "POST" enctype="multipart/form-data">
+                
+                <label for="imgInp" id="drop-container">
+                    <span class="drop-title">
+                        ${ category.getCover() != null ? 'Change Cover' : 'Upload Cover'}
+                    </span>
+
+                    <input name ="file" type="file", id="imgInp" required/>
+
+                </label>
+
+                <div id="preview-box">
+                    <img id="imagePrev" src="#" alt="Image preview" />
+                    <div class="mt-2">
+                        <input type="submit" value="confirm upload" class = "btn btn-light"/> 
+                    </div>
+                </div>
+  
             </form>
         </div>
 
     </div>
-
+    <script>
+        imgInp.onchange = evnt => {
+            const [file] = imgInp.files
+            if(file) {
+                imagePrev.src = URL.createObjectURL(file);
+                imagePrev.width = 450;
+                document.getElementById("drop-container").style.display = "none";
+                document.getElementById("preview-box").style.display = "block";
+                document.getElementById("cover").style.display = "none";
+            }
+        }
+    </script>
 </div>

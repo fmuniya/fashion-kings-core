@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -36,46 +37,9 @@ public class Category {
 	@Column(name = "cover")
 	private String cover;
 
-	public String getCover() {
-		return cover;
-	}
-
-
-	public void setCover(String cover) {
-		this.cover = cover;
-	}
-
-
-	public Date getCreated() {
-		return created;
-	}
-
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
-
-	public Date getUpdated() {
-		return updated;
-	}
-
-
-	public void setUpdated(Date updated) {
-		this.updated = updated;
-	}
-
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
+	
 	@Column(name = "description")
+	@Lob
 	private String description;
 	
 	@Column(name = "created")
@@ -134,6 +98,46 @@ public class Category {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
+	
+	public String getCover() {
+		return cover;
+	}
+
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+
+	public Date getCreated() {
+		return created;
+	}
+
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
+
 
 
 	@Override
